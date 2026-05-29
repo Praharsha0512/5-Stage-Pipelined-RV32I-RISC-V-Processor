@@ -1,1 +1,1 @@
-# 5-Stage-Pipelined-RISC-V-RV32I-Processor
+# 5-Stage-Pipelined-RV32I-RISC-V-Processor
