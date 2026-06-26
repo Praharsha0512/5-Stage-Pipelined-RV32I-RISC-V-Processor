@@ -68,6 +68,7 @@ Functional correctness verified with a self-checking Verilog testbench in Vivado
 
 ## Repository Structure
 
+```
 .
 ├── 5-stage-pipelined-microprocessor/
 │   ├── RTL/              # Verilog source modules
@@ -79,6 +80,7 @@ Functional correctness verified with a self-checking Verilog testbench in Vivado
 │   ├── tb/               # Single-cycle testbench
 │   └── waveforms/        # Single-cycle waveforms
 └── README.md
+```
 
 ## How to Run
 
