@@ -14,7 +14,7 @@ A 32-bit RISC-V processor implementing the RV32I base instruction set, built fir
 
 ### Modules (14 total)
 
-pc.v, instruction_memory.v, if_id.v, control_unit.v, register_file.v, immediate_generator.v, hazard_detection_unit.v, id_ex.v, alu_control.v, alu.v, ex_mem.v, data_memory.v, mem_wb.v, pipelined_processor.v (top-level integration)
+`pc.v`, `instruction_memory.v`, `if_id.v`, `control_unit.v`, `register_file.v`, `immediate_generator.v`, `hazard_detection_unit.v`, `id_ex.v`, `alu_control.v`, `alu.v`, `ex_mem.v`, `data_memory.v`, `mem_wb.v`, `pipelined_processor.v` (top-level integration)
 
 ## Supported Instructions (21)
 
@@ -67,38 +67,3 @@ Functional correctness verified with a self-checking Verilog testbench in Vivado
 **Memory[0] = 15** ✓
 
 ## Repository Structure
-.
-├── 5-stage-pipelined-microprocessor/
-│   ├── RTL/              # Verilog source modules
-│   ├── Synthesis/        # Synthesis reports (Vivado, xc7k70tfbv676-1)
-│   ├── Testbench/        # Testbench + program.hex test vectors
-│   └── Waveforms/        # Simulation waveforms (VCD) and screenshots
-├── rv32i-single-cycle-processor/
-│   ├── rtl/              # Single-cycle Verilog source modules
-│   ├── tb/               # Single-cycle testbench
-│   └── waveforms/        # Single-cycle waveforms
-└── README.md
-
-##How to Run
-
-Clone the repository and open the project in Vivado 2023.2.
-Add all files from 5-stage-pipelined-microprocessor/RTL/ and 5-stage-pipelined-microprocessor/Testbench/ as sources.
-Set pipelined_processor_tb as the simulation top module.
-Run Behavioral Simulation.
-Console output reports per-register results and prints a final ALL CHECKS PASSED / SOME CHECKS FAILED summary.
-
-Make sure program.hex from Testbench/ is in the working directory so the instruction memory initializes correctly.
-
-##Tools
-
--Xilinx Vivado 2023.2
--Target device: xc7k70tfbv676-1 (Kintex-7)
--HDL: Verilog
-
-
-##Known Limitations / Future Work
-
-- JALR and byte/halfword memory operations (LB, LH, LBU, LHU, SB, SH) are not yet implemented.
-- AUIPC is partially scaffolded but not wired into the EX-stage PC-relative addressing mux.
-- No top-level debug output ports are currently exposed; internal state is verified via hierarchical testbench access in simulation.
-- Timing constraints (clock period) were not specified prior to synthesis, so timing closure (WNS/TNS) was not evaluated; synthesis was run primarily to confirm structural correctness of the design.
