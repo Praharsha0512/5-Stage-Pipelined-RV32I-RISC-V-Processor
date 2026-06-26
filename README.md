@@ -67,3 +67,38 @@ Functional correctness verified with a self-checking Verilog testbench in Vivado
 **Memory[0] = 15** ✓
 
 ## Repository Structure
+
+.
+├── 5-stage-pipelined-microprocessor/
+│   ├── RTL/              # Verilog source modules
+│   ├── Synthesis/        # Synthesis reports (Vivado, xc7k70tfbv676-1)
+│   ├── Testbench/        # Testbench + program.hex test vectors
+│   └── Waveforms/        # Simulation waveforms (VCD) and screenshots
+├── rv32i-single-cycle-processor/
+│   ├── rtl/              # Single-cycle Verilog source modules
+│   ├── tb/               # Single-cycle testbench
+│   └── waveforms/        # Single-cycle waveforms
+└── README.md
+
+## How to Run
+
+1. Clone the repository and open the project in **Vivado 2023.2**.
+2. Add all files from `5-stage-pipelined-microprocessor/RTL/` and `5-stage-pipelined-microprocessor/Testbench/` as sources.
+3. Set `pipelined_processor_tb` as the simulation top module.
+4. Run **Behavioral Simulation**.
+5. Console output reports per-register results and prints a final `ALL CHECKS PASSED` / `SOME CHECKS FAILED` summary.
+
+> Make sure `program.hex` from `Testbench/` is in the working directory so the instruction memory initializes correctly.
+
+## Tools
+
+- Xilinx Vivado 2023.2
+- Target device: `xc7k70tfbv676-1` (Kintex-7)
+- HDL: Verilog
+
+## Known Limitations / Future Work
+
+- JALR and byte/halfword memory operations (LB, LH, LBU, LHU, SB, SH) are not yet implemented.
+- AUIPC is partially scaffolded but not wired into the EX-stage PC-relative addressing mux.
+- No top-level debug output ports are currently exposed; internal state is verified via hierarchical testbench access in simulation.
+- Timing constraints (clock period) were not specified prior to synthesis, so timing closure (WNS/TNS) was not evaluated; synthesis was run primarily to confirm structural correctness of the design.
